@@ -8,19 +8,14 @@ For example, if the JSON data contains an entry with a code of 8302-2 (which bel
 Once the section template is determined, an XML document is generated using the libxmljs Document API and passing in the appropriate XML attributes for the section template determined previously.
 
 ## Acquiring the Lookup Data
-The data was acquired from http://phinvads.cdc.gov/vads/SearchVocab.action. Select Download All. Execute the ruby batch conversion script, then run the following Unix commands in the terminal:
+The data is acquired from http://phinvads.cdc.gov/vads/SearchVocab.action. Click Value Sets > Browse All Value Sets > Download All. Execute the ruby batch conversion script from the command line (WARNING: this will take a considerable amount of time to process the files, ~2-3hrs). Once the script has finished running, execute the following Unix commands in the terminal:
 
 ~~~~
 cat *.csv > final.csv
 COUNT=`grep "Concept\sCode" -Hnm 1 final.csv |cut -f2 -d:` 
 COUNT=`expr $COUNT - 1`
 awk '/Concept Code/&&c++ {next} 1' final.csv > finalRevised.csv
-head -$COUNT finalRevised.csv > valueSet.csv
-COUNT=`expr $COUNT + 1`
-tail -n +$COUNT finalRevised.csv > codeSystem.csv
-mkdir csvFiles
-cp -r codeSystem.csv valueSet.csv ./csvFiles
 ~~~~
 
-## Ruby conversion script
-Utilizes Roo and Spreadsheet ruby gems/libraries to combine worksheets and convert to csv.
+This results in a CSV file (~300mb file) with the following headers:
+"Concept Code","Concept Name","Preferred Concept Name","Preferred Alternate Code","Code System OID","Code System Name","Code System Code","Code System Version","HL7 Table 0396 Code","Value Set Name","Value Set Code","Value Set OID","Value Set Version","Value Set Definition","Value Set Status","VS Last Updated Date","VS Release Comments"
