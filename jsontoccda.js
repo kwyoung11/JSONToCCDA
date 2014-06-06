@@ -14,6 +14,7 @@ appropriate XML attributes for the section template determined previously.
 */
 
 var libxmljs = require("libxmljs");
+var CCDA = require("blue-button-meta");
 
 var data = [
             {
@@ -163,6 +164,14 @@ See sectionNumberToSectionName data structure for order.
 var valueSetCodesToSection = [[],[],[],[],[],[],[],["9279-1", "8867-4", "2710-2", "8480-6", "8462-4", 
 "8310-5", "8302-2", "8306-3", "8287-5", "3141-9", "39156-5", "3140-1"]];
 
+var codesToData = {"8310-5":{"Concept Code":"8310-5","Concept Name":"Body Temperature","Preferred Concept Name":"Body temperature:Temp:Pt:^Patient:Qn:","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"8462-4":{"Concept Code":"8462-4","Concept Name":"BP Diastolic","Preferred Concept Name":"Intravascular diastolic:Pres:Pt:Arterial system:Qn:","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"8480-6":{"Concept Code":"8480-6","Concept Name":"BP Systolic","Preferred Concept Name":"Intravascular systolic:Pres:Pt:Arterial system:Qn:","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"8287-5":{"Concept Code":"8287-5","Concept Name":"Head Circumference","Preferred Concept Name":"Circumference.occipital-frontal:Len:Pt:Head:Qn:Tape measure","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"8867-4":{"Concept Code":"8867-4","Concept Name":"Heart Rate","Preferred Concept Name":"Heart beat:NRat:Pt:XXX:Qn:","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"8302-2":{"Concept Code":"8302-2","Concept Name":"Height","Preferred Concept Name":"Body height:Len:Pt:^Patient:Qn:","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"8306-3":{"Concept Code":"8306-3","Concept Name":"Height (Lying)","Preferred Concept Name":"Body height^lying:Len:Pt:^Patient:Qn:","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"2710-2":{"Concept Code":"2710-2","Concept Name":"O2 % BldC Oximetry","Preferred Concept Name":"Oxygen saturation:SFr:Pt:BldC:Qn:Oximetry","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"9279-1":{"Concept Code":"9279-1","Concept Name":"Respiratory Rate","Preferred Concept Name":"Breaths:NRat:Pt:Respiratory system:Qn:","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null},"3141-9":{"Concept Code":"3141-9","Concept Name":"Weight Measured","Preferred Concept Name":"Body weight:Mass:Pt:^Patient:Qn:Measured","Preferred Alternate Code":null,"Code System OID":"2.16.840.1.113883.6.1","Code System Name":"LOINC","Code System Code":"PH_LOINC","Code System Version":"2.32","HL7 Table 0396 Code":"LN","Value Set Name":"Vital Sign Result Value Set","Value Set Code":"PHVS_VitalSignResult_HITSP","Value Set OID":"2.16.840.1.113883.3.88.12.80.62","Value Set Version":"1","Value Set Definition":"This identifies the vital sign result type","Value Set Status":"Published","VS Last Updated Date":"7/23/09","VS Release Comments":null}}
+
+
+var valueSetOIDToSection = {
+    "2.16.840.1.113883.3.88.12.80.62": ["2.16.840.1.113883.10.20.22.2.4", "2.16.840.1.113883.10.20.22.2.4.1"]
+}
+
+
 // Map section number to section name and specify order for valueSetCodesToSections parallel array
 var sectionNumberToSectionName = {
 	1: "allergies",
@@ -178,9 +187,9 @@ var sectionNumberToSectionName = {
 /*
 This data structure maps code system names to code systems identifiers.
 */
-var codeSystemNames = {
-	"LOINC": "2.16.840.1.113883.6.1", // vital signs,
-	"SNOMED CT": "2.16.840.1.113883.6.96", 
+var codeSystems = {
+	"LOINC": ["2.16.840.1.113883.6.1", "8716-3"], // vital signs,
+	"SNOMED CT": ["2.16.840.1.113883.6.96", "46680005"], 
 	"RxNorm": "2.16.840.1.113883.6.88",
 	"ActCode": "2.16.840.1.113883.5.4", // allergies
 	"CPT-4": "2.16.840.1.113883.6.12", // encounters
@@ -193,7 +202,7 @@ This data structure maps section templates to templateID's, code's and codeSyste
 */
 var sectionToTemplateID = {
 	"section": {
-		"Vital Signs": {
+		7: {
 			"templateID": "2.16.840.1.113883.10.20.22.2.4",
 			"code": "8716-3",
 			"codeSystemName": "LOINC" 
@@ -224,17 +233,49 @@ function parseJSONToCCDA(data) {
 		if (sectionNumber == 7) { // VITAL SIGNS
 			// build vital signs section
 			var doc = new libxmljs.Document();
-			doc.node('ClinicalDocument').attr({"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"})
+			var top = doc.node('ClinicalDocument').attr({"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"})
 					.attr({xmlns: "urn:hl7-org:v3"}).attr({"xmlns:cda": "urn:hl7-org:v3"}).attr({"xmlns:sdtc": "urn:hl7-org:sdtc"})
 				.node('section')
-					.node('templateID').attr({root: sectionToTemplateID["section"]["Vital Signs"]["templateID"]}).parent()
-					.node('code').attr({code:  sectionToTemplateID["section"]["Vital Signs"]["code"]})
-						.attr({codeSystem: codeSystemNames[sectionToTemplateID["section"]["Vital Signs"]["codeSystemName"]]})
+					.node('templateID').attr({root: CCDA.sections[sectionNumber].templateIds[0]}).parent()
+                    .node('templateID').attr({root: CCDA.sections[sectionNumber].templateIds[1]}).parent()
+					.node('code').attr({code: codeSystems[data[0]["code_system_name"]][1] })
+						.attr({codeSystem: codeSystems[data[0]["code_system_name"]][0]})
+                        .attr({codeSystemName: data[0]["code_system_name"]})
 						.attr({displayName: "VITAL SIGNS"}).parent()
 					.node('title', "VITAL SIGNS").parent()
 					.node('text').parent()
 					.node('entry').attr({typeCode: "DRIV"})
-				.parent()
+                        .node('organizer').attr({classCode: "CLUSTER"}).attr({moodCode: "EVN"})
+                            .node('templateId').attr({root: 'TODO'})
+                            .node('id').attr({root: data[0]["identifiers"][0]["identifier"]})
+                            .node('code')
+                                .attr({code: codeSystems["SNOMED CT"][1] })
+                                .attr({codeSystem: codeSystems["SNOMED CT"][0] })
+                                .attr({codeSystemName: "SNOMED CT"})
+                                .attr({displayName: 'Vital signs'}).parent()
+                            .node('statusCode').attr({code: data[0]['status']}).parent()
+                            .node('effectiveTime').attr({value: 'TODO'})
+
+                            for (var i = 0; i < data.length; i++) {
+                                top.node('component')
+                                    .node('observation').attr({classCode: "OBS"}).attr({moodCode: "EVN"})
+                                        .node('templateId').attr({root: "TODO"})
+                                        .node('id').attr({root: data[i]['identifiers'][0]['identifier']})
+                                        .node('code').attr({code: codeSystems[data[i]["code_system_name"]][1] })
+                                            .attr({codeSystem: codeSystems[data[i]["code_system_name"]][0]})
+                                            .attr({codeSystemName: data[i]["code_system_name"]})
+                                            .attr({displayName: data[i]['name']}).parent()
+                                        .node('text')
+                                            .node('reference').attr({value: "#vit" + i}).parent()
+                                        .parent()
+                                        .node('statusCode').attr({code: data[i]['status']}).parent()
+                                        .node('effectiveTime').attr({value: "TODO"}).parent()
+                                        .node('value').attr({"xsi:type": "PQ"}).attr({value: data[i]["value"]}).attr({unit: data[i]["unit"]}).parent()
+                                        .node('interpretationCode').attr({code: "N"}).attr({codeSystem: "2.16.840.1.113883.5.83"}).parent()
+                                    .parent()
+                                .parent()
+                            }
+				top.parent()
 			.parent();
 
 			console.log(doc.toString());
@@ -244,7 +285,7 @@ function parseJSONToCCDA(data) {
 
 parseJSONToCCDA(data);
 
-
+console.log(CCDA.statements);
 
 
 
