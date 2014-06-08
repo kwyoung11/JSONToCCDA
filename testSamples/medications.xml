@@ -11,34 +11,7 @@
         <code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
             displayName="HISTORY OF MEDICATION USE"/>
         <title>MEDICATIONS</title>
-        <text>
-            <table border="1" width="100%">
-                <thead>
-                    <tr>
-                        <th>Medication</th>
-                        <th>Directions</th>
-                        <th>Start Date</th>
-                        <th>Status</th>
-                        <th>Indications</th>
-                        <th>Fill Instructions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <content ID="MedSec_1">Proventil HFA
-                                            </content>
-                        </td>
-                        <td>0.09 MG/ACTUAT inhalant solution, 2 puffs QID PRN
-                            wheezing</td>
-                        <td>20070103</td>
-                        <td>Active</td>
-                        <td>Pneumonia (233604007 SNOMED CT)</td>
-                        <td>Generic Substitition Allowed</td>
-                    </tr>
-                </tbody>
-            </table>
-        </text>
+        <text/>
         <entry typeCode="DRIV">
             <substanceAdministration classCode="SBADM" moodCode="EVN">
                 <!-- ** Medication activity ** -->
@@ -213,7 +186,7 @@
                 </entryRelationship>
 
 
-                
+
                 <entryRelationship typeCode="REFR">
                     <supply classCode="SPLY" moodCode="EVN">
                         <!-- ** Medication dispense ** -->
