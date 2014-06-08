@@ -17,145 +17,85 @@ var CCDA = require("blue-button-meta");
 var fs = require('fs');
 
 var data = [
-            {
-                "identifiers": [
-                    {
-                        "identifier": "c6f88321-67ad-11db-bd13-0800200c9a66"
-                    }
-                ],
-                "status": "completed",
-                "date": [
-                    {
-                        "date": "1999-11-14T00:00:00.000Z",
-                        "precision": "day"
-                    }
-                ],
-                "freeTextValue": "177 cm",
-                "interpretations": [
-                    "Normal"
-                ],
-                "name": "Height",
-                "code": "8302-2",
-                "code_system_name": "LOINC",
-                "value": 177,
-                "unit": "cm"
-            },
-            {
-                "identifiers": [
-                    {
-                        "identifier": "c6f88321-67ad-11db-bd13-0800200c9a66"
-                    }
-                ],
-                "status": "completed",
-                "date": [
-                    {
-                        "date": "1999-11-14T00:00:00.000Z",
-                        "precision": "day"
-                    }
-                ],
-                "freeTextValue": "86 kg",
-                "interpretations": [
-                    "Normal"
-                ],
-                "name": "Patient Body Weight - Measured",
-                "code": "3141-9",
-                "code_system_name": "LOINC",
-                "value": 86,
-                "unit": "kg"
-            },
-            {
-                "identifiers": [
-                    {
-                        "identifier": "c6f88321-67ad-11db-bd13-0800200c9a66"
-                    }
-                ],
-                "status": "completed",
-                "date": [
-                    {
-                        "date": "1999-11-14T00:00:00.000Z",
-                        "precision": "day"
-                    }
-                ],
-                "freeTextValue": "132/86 mmHg",
-                "interpretations": [
-                    "Normal"
-                ],
-                "name": "Intravascular Systolic",
-                "code": "8480-6",
-                "code_system_name": "LOINC",
-                "value": 132,
-                "unit": "mm[Hg]"
-            },
-            {
-                "identifiers": [
-                    {
-                        "identifier": "c6f88321-67ad-11db-bd13-0800200c9a66"
-                    }
-                ],
-                "status": "completed",
-                "date": [
-                    {
-                        "date": "2000-04-07T00:00:00.000Z",
-                        "precision": "day"
-                    }
-                ],
-                "freeTextValue": "177 cm",
-                "interpretations": [
-                    "Normal"
-                ],
-                "name": "Height",
-                "code": "8302-2",
-                "code_system_name": "LOINC",
-                "value": 177,
-                "unit": "cm"
-            },
-            {
-                "identifiers": [
-                    {
-                        "identifier": "c6f88321-67ad-11db-bd13-0800200c9a66"
-                    }
-                ],
-                "status": "completed",
-                "date": [
-                    {
-                        "date": "2000-04-07T00:00:00.000Z",
-                        "precision": "day"
-                    }
-                ],
-                "freeTextValue": "88 kg",
-                "interpretations": [
-                    "Normal"
-                ],
-                "name": "Patient Body Weight - Measured",
-                "code": "3141-9",
-                "code_system_name": "LOINC",
-                "value": 88,
-                "unit": "kg"
-            },
-            {
-                "identifiers": [
-                    {
-                        "identifier": "c6f88321-67ad-11db-bd13-0800200c9a66"
-                    }
-                ],
-                "status": "completed",
-                "date": [
-                    {
-                        "date": "2000-04-07T00:00:00.000Z",
-                        "precision": "day"
-                    }
-                ],
-                "freeTextValue": "145/88 mmHg",
-                "interpretations": [
-                    "Normal"
-                ],
-                "name": "Intravascular Systolic",
-                "code": "8480-6",
-                "code_system_name": "LOINC",
-                "value": 145,
-                "unit": "mm[Hg]"
-            }
-        ]
+        {
+            "date": [
+                {
+                    "date": "2007-05-01T00:00:00.000Z",
+                    "precision": "day"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "4adc1020-7b14-11db-9fe1-0800200c9a66"
+                }
+            ],
+            "severity": "Moderate to severe",
+            "status": "Inactive",
+            "reaction": [
+                {
+                    "severity": "Mild",
+                    "name": "Nausea",
+                    "code": "422587007",
+                    "code_system_name": "SNOMED CT"
+                }
+            ],
+            "name": "ALLERGENIC EXTRACT, PENICILLIN",
+            "code": "314422",
+            "code_system_name": "RXNORM"
+        },
+        {
+            "date": [
+                {
+                    "date": "2006-05-01T00:00:00.000Z",
+                    "precision": "day"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "4adc1020-7b14-11db-9fe1-0800200c9a66"
+                }
+            ],
+            "severity": "Moderate",
+            "status": "Active",
+            "reaction": [
+                {
+                    "severity": "Mild",
+                    "name": "Wheezing",
+                    "code": "56018004",
+                    "code_system_name": "SNOMED CT"
+                }
+            ],
+            "name": "Codeine",
+            "code": "2670",
+            "code_system_name": "RXNORM"
+        },
+        {
+            "date": [
+                {
+                    "date": "2008-05-01T00:00:00.000Z",
+                    "precision": "day"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "4adc1020-7b14-11db-9fe1-0800200c9a66"
+                }
+            ],
+            "severity": "Mild to moderate",
+            "status": "Active",
+            "reaction": [
+                {
+                    "severity": "Mild to moderate",
+                    "name": "Hives",
+                    "code": "247472004",
+                    "code_system_name": "SNOMED CT"
+                }
+            ],
+            "name": "Aspirin",
+            "code": "1191",
+            "code_system_name": "RXNORM"
+        }
+    ]
 
 /* 
 This data structure delineates the value set codes for each possible section template in a CCD. 
@@ -191,7 +131,7 @@ This data structure maps code system names to code systems identifiers.
 var codeSystems = {
 	"LOINC": ["2.16.840.1.113883.6.1", "8716-3"], // vital signs,
 	"SNOMED CT": ["2.16.840.1.113883.6.96", "46680005"], 
-	"RxNorm": "2.16.840.1.113883.6.88",
+	"RXNORM": "2.16.840.1.113883.6.88",
 	"ActCode": "2.16.840.1.113883.5.4", // allergies
 	"CPT-4": "2.16.840.1.113883.6.12", // encounters
 	"CVX": "2.16.840.1.113883.12.292" // immunizations
