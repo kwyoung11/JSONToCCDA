@@ -20,81 +20,71 @@ var fs = require('fs');
 var data = [
         {
             "date": [
-                {
-                    "date": "2007-05-01T00:00:00.000Z",
-                    "precision": "day"
-                }
+                [
+                    {
+                        "date": "2007-01-03T00:00:00.000Z",
+                        "precision": "day"
+                    },
+                    {
+                        "date": "2012-05-15T00:00:00.000Z",
+                        "precision": "day"
+                    }
+                ]
             ],
             "identifiers": [
                 {
-                    "identifier": "4adc1020-7b14-11db-9fe1-0800200c9a66"
+                    "identifier": "cdbd33f0-6cde-11db-9fe1-0800200c9a66"
                 }
             ],
-            "severity": "Moderate to severe",
-            "status": "Inactive",
-            "reaction": [
-                {
-                    "severity": "Mild",
-                    "name": "Nausea",
-                    "code": "422587007",
-                    "code_system_name": "SNOMED CT"
+            "status": "Completed",
+            "sig": "Proventil HFA ",
+            "product": {
+                "identifiers": {
+                    "identifier": "2a620155-9d11-439e-92b3-5d9815ff4ee8"
+                },
+                "unencoded_name": "Proventil HFA ",
+                "name": "Proventil HFA",
+                "code": "219483",
+                "code_system_name": "RXNORM",
+                "translations": [
+                    {
+                        "name": "Proventil 0.09 MG/ACTUAT inhalant solution",
+                        "code": "573621",
+                        "code_system_name": "RXNORM"
+                    }
+                ]
+            },
+            "administration": {
+                "route": {
+                    "name": "RESPIRATORY (INHALATION)",
+                    "code": "C38216",
+                    "code_system_name": "Medication Route FDA"
+                },
+                "form": {
+                    "name": "INHALANT",
+                    "code": "C42944",
+                    "code_system_name": "Medication Route FDA"
+                },
+                "dose": {
+                    "value": 1,
+                    "unit": "mg/actuat"
+                },
+                "rate": {
+                    "value": 90,
+                    "unit": "ml/min"
                 }
-            ],
-            "name": "ALLERGENIC EXTRACT, PENICILLIN",
-            "code": "314422",
-            "code_system_name": "RXNORM"
-        },
-        {
-            "date": [
-                {
-                    "date": "2006-05-01T00:00:00.000Z",
-                    "precision": "day"
-                }
-            ],
-            "identifiers": [
-                {
-                    "identifier": "4adc1020-7b14-11db-9fe1-0800200c9a66"
-                }
-            ],
-            "severity": "Moderate",
-            "status": "Active",
-            "reaction": [
-                {
-                    "severity": "Mild",
+            },
+            "precondition": {
+                "code": {
+                    "code": "ASSERTION",
+                    "code_system_name": "HL7ActCode"
+                },
+                "value": {
                     "name": "Wheezing",
                     "code": "56018004",
                     "code_system_name": "SNOMED CT"
                 }
-            ],
-            "name": "Codeine",
-            "code": "2670",
-            "code_system_name": "RXNORM"
-        },
-        {
-            "date": [
-                {
-                    "date": "2008-05-01T00:00:00.000Z",
-                    "precision": "day"
-                }
-            ],
-            "identifiers": [
-                {
-                    "identifier": "4adc1020-7b14-11db-9fe1-0800200c9a66"
-                }
-            ],
-            "severity": "Mild to moderate",
-            "status": "Active",
-            "reaction": [
-                {
-                    "severity": "Mild to moderate",
-                    "name": "Hives",
-                    "code": "247472004",
-                    "code_system_name": "SNOMED CT"
-                }
-            ],
-            "name": "Aspirin",
-            "code": "1191",
-            "code_system_name": "RXNORM"
+            }
         }
     ]
 
@@ -130,13 +120,13 @@ var sectionNames = {
 This data structure maps code system names to code systems identifiers.
 */
 var codeSystems = {
-	"LOINC": ["2.16.840.1.113883.6.1", "8716-3"], // vital signs,
+	"LOINC": ["2.16.840.1.113883.6.1", "8716-3"], 
 	"SNOMED CT": ["2.16.840.1.113883.6.96", "46680005"], 
 	"RXNORM": "2.16.840.1.113883.6.88",
-	"ActCode": "2.16.840.1.113883.5.4", // allergies
-	"CPT-4": "2.16.840.1.113883.6.12", // encounters
-	"CVX": "2.16.840.1.113883.12.292" // immunizations
-	
+	"ActCode": "2.16.840.1.113883.5.4", 
+	"CPT-4": "2.16.840.1.113883.6.12", 
+	"CVX": "2.16.840.1.113883.12.292", 
+	"HL7ActCode": "2.16.840.1.113883.5.4"
 }
 
 /*
@@ -148,19 +138,7 @@ XML document appropriate to that section.
 function parseJSONToCCDA(data) {
 	var sectionNumber = determineSection(data);
     var xml = require('./templates/' + sectionNames[sectionNumber] +'.js')(sectionNumber, data, codeSystems);
-
     console.log(xml.toString());
-
-    var xml =  '<?xml version="1.0" encoding="UTF-8"?>' +
-           '<root>' +
-               '<child foo="bar">' +
-                   '<grandchild baz="fizbuzz">grandchild content</grandchild>' +
-               '</child>' +
-               '<sibling>with content!</sibling>' +
-           '</root>';
-
-    var xmlDoc = libxmljs.parseXmlString(xml);
-    console.log(xmlDoc.toString());
 }
 
 function determineSection(json) {
