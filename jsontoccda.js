@@ -13,6 +13,7 @@ Once the section template is determined, an XML document is generated using the 
 appropriate XML attributes for the section template determined previously.
 */
 
+var libxmljs = require("libxmljs");
 var CCDA = require("blue-button-meta");
 var fs = require('fs');
 
@@ -149,6 +150,17 @@ function parseJSONToCCDA(data) {
     var xml = require('./templates/' + sectionNames[sectionNumber] +'.js')(sectionNumber, data, codeSystems);
 
     console.log(xml.toString());
+
+    var xml =  '<?xml version="1.0" encoding="UTF-8"?>' +
+           '<root>' +
+               '<child foo="bar">' +
+                   '<grandchild baz="fizbuzz">grandchild content</grandchild>' +
+               '</child>' +
+               '<sibling>with content!</sibling>' +
+           '</root>';
+
+    var xmlDoc = libxmljs.parseXmlString(xml);
+    console.log(xmlDoc.toString());
 }
 
 function determineSection(json) {
