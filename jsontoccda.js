@@ -19,64 +19,55 @@ var fs = require('fs');
 
 var data = [
         {
-            "date": [
-                {
-                    "date": "2008-01-03T00:00:00.000Z",
-                    "precision": "day"
-                },
-                {
-                    "date": "2008-01-03T00:00:00.000Z",
-                    "precision": "day"
-                }
-            ],
             "identifiers": [
                 {
-                    "identifier": "ab1791b0-5c71-11db-b0de-0800200c9a66"
+                    "identifier": "2a620155-9d11-439e-92b3-5d9815ff4de8"
                 }
             ],
-            "negation_indicator": false,
-            "onset_age": "57",
-            "onset_age_unit": "Year",
-            "status": "Resolved",
-            "patient_status": "Alive and well",
-            "source_list_identifiers": [
-                {
-                    "identifier": "ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7"
-                }
-            ],
-            "name": "Pneumonia",
-            "code": "233604007",
-            "code_system_name": "SNOMED CT"
-        },
-        {
             "date": [
                 {
-                    "date": "2007-01-03T00:00:00.000Z",
-                    "precision": "day"
-                },
-                {
-                    "date": "2008-01-03T00:00:00.000Z",
-                    "precision": "day"
+                    "date": "2009-02-27T13:00:00.000Z",
+                    "precision": "subsecond"
                 }
             ],
-            "identifiers": [
+            "locations": [
                 {
-                    "identifier": "ab1791b0-5c71-11db-b0de-0800200c9a66"
+                    "name": "Community Urgent Care Center",
+                    "type": {
+                        "name": "Urgent Care Center",
+                        "code": "1160-1",
+                        "code_system_name": "HealthcareServiceLocation"
+                    },
+                    "addresses": [
+                        {
+                            "streetLines": [
+                                "17 Daws Rd."
+                            ],
+                            "city": "Blue Bell",
+                            "state": "MA",
+                            "zip": "02368",
+                            "country": "US"
+                        }
+                    ]
                 }
             ],
-            "negation_indicator": true,
-            "onset_age": "57",
-            "onset_age_unit": "Year",
-            "status": "Active",
-            "patient_status": "Alive and well",
-            "source_list_identifiers": [
+            "findings": [
                 {
-                    "identifier": "ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7"
+                    "name": "Pneumonia",
+                    "code": "233604007",
+                    "code_system_name": "SNOMED CT"
                 }
             ],
-            "name": "Asthma",
-            "code": "195967001",
-            "code_system_name": "SNOMED CT"
+            "name": "Office outpatient visit 15 minutes",
+            "code": "99213",
+            "code_system_name": "CPT",
+            "translations": [
+                {
+                    "name": "Ambulatory",
+                    "code": "AMB",
+                    "code_system_name": "HL7ActCode"
+                }
+            ]
         }
     ]
 
@@ -129,7 +120,6 @@ XML document appropriate to that section.
 */
 function parseJSONToCCDA(data) {
 	var sectionNumber = determineSection(data);
-    console.log(sectionNumber);
     var xml = require('./templates/' + sectionNames[sectionNumber] +'.js')(sectionNumber, data, codeSystems);
     console.log(xml.toString());
 }
