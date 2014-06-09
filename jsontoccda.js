@@ -17,76 +17,96 @@ var libxmljs = require("libxmljs");
 var CCDA = require("blue-button-meta");
 var fs = require('fs');
 
-var data = [
-        {
-            "date": [
-                [
-                    {
-                        "date": "2007-01-03T00:00:00.000Z",
-                        "precision": "day"
-                    },
-                    {
-                        "date": "2012-05-15T00:00:00.000Z",
-                        "precision": "day"
-                    }
-                ]
+var data = {
+        "name": {
+            "middle": [
+                "Isa"
             ],
-            "identifiers": [
-                {
-                    "identifier": "cdbd33f0-6cde-11db-9fe1-0800200c9a66"
-                }
-            ],
-            "status": "Completed",
-            "sig": "Proventil HFA ",
-            "product": {
-                "identifiers": {
-                    "identifier": "2a620155-9d11-439e-92b3-5d9815ff4ee8"
-                },
-                "unencoded_name": "Proventil HFA ",
-                "name": "Proventil HFA",
-                "code": "219483",
-                "code_system_name": "RXNORM",
-                "translations": [
-                    {
-                        "name": "Proventil 0.09 MG/ACTUAT inhalant solution",
-                        "code": "573621",
-                        "code_system_name": "RXNORM"
-                    }
-                ]
-            },
-            "administration": {
-                "route": {
-                    "name": "RESPIRATORY (INHALATION)",
-                    "code": "C38216",
-                    "code_system_name": "Medication Route FDA"
-                },
-                "form": {
-                    "name": "INHALANT",
-                    "code": "C42944",
-                    "code_system_name": "Medication Route FDA"
-                },
-                "dose": {
-                    "value": 1,
-                    "unit": "mg/actuat"
-                },
-                "rate": {
-                    "value": 90,
-                    "unit": "ml/min"
-                }
-            },
-            "precondition": {
-                "code": {
-                    "code": "ASSERTION",
-                    "code_system_name": "HL7ActCode"
-                },
-                "value": {
-                    "name": "Wheezing",
-                    "code": "56018004",
-                    "code_system_name": "SNOMED CT"
-                }
+            "last": "Jones",
+            "first": "Isabella"
+        },
+        "dob": [
+            {
+                "date": "1975-05-01T00:00:00.000Z",
+                "precision": "day"
             }
-        }
-    ]
+        ],
+        "gender": "Female",
+        "identifiers": [
+            {
+                "identifier": "2.16.840.1.113883.19.5.99999.2",
+                "identifier_type": "998991"
+            },
+            {
+                "identifier": "2.16.840.1.113883.4.1",
+                "identifier_type": "111-00-2330"
+            }
+        ],
+        "marital_status": "Married",
+        "addresses": [
+            {
+                "streetLines": [
+                    "1357 Amber Drive"
+                ],
+                "city": "Beaverton",
+                "state": "OR",
+                "zip": "97867",
+                "country": "US",
+                "use": "primary home"
+            }
+        ],
+        "phone": [
+            {
+                "number": "(816)276-6909",
+                "type": "primary home"
+            }
+        ],
+        "race_ethnicity": "White",
+        "languages": [
+            {
+                "language": "en",
+                "preferred": true,
+                "mode": "Expressed spoken",
+                "proficiency": "Good"
+            }
+        ],
+        "religion": "Christian (non-Catholic, non-specific)",
+        "birthplace": {
+            "city": "Beaverton",
+            "state": "OR",
+            "zip": "97867",
+            "country": "US"
+        },
+        "guardians": [
+            {
+                "relation": "Parent",
+                "addresses": [
+                    {
+                        "streetLines": [
+                            "1357 Amber Drive"
+                        ],
+                        "city": "Beaverton",
+                        "state": "OR",
+                        "zip": "97867",
+                        "country": "US",
+                        "use": "primary home"
+                    }
+                ],
+                "names": [
+                    {
+                        "last": "Jones",
+                        "first": "Ralph"
+                    }
+                ],
+                "phone": [
+                    {
+                        "number": "(816)276-6909",
+                        "type": "primary home"
+                    }
+                ]
+            }
+        ]
+    }
 
 /* 
 This data structure delineates the value set codes for each possible section template in a CCD. 
@@ -142,23 +162,23 @@ function parseJSONToCCDA(data) {
 }
 
 function determineSection(json) {
-    if (json[0]["severity"]) // allergies
+    if (json[0] && json[0]["severity"]) // allergies
         sectionNumber = 1
-    else if (json[0]["sig"]) // medications
+    else if (json[0] && json[0]["sig"]) // medications
         sectionNumber = 2
-    else if (json[0]["negation_indicator"]) // problems
+    else if (json[0] && json[0]["negation_indicator"]) // problems
         sectionNumber = 3
-    else if (json[0]["results"] != undefined) // results
+    else if (json[0] && json[0]["results"] != undefined) // results
         sectionNumber = 4
-    else if (json[0]["gender"]) // demographics
+    else if (json["gender"]) // demographics
         sectionNumber = 5
-    else if (json[0]["bodysite"]) // procedures
+    else if (json[0] && json[0]["bodysite"]) // procedures
         sectionNumber = 6
-    else if (json[0]["locations"]) // encounters
+    else if (json[0] && json[0]["locations"]) // encounters
         sectionNumber = 7
-    else if (json[0]["product"]) // immunizations
+    else if (json[0] && json[0]["product"]) // immunizations
         sectionNumber = 8
-    else if (json[0]["freeTextValue"]) // vital signs
+    else if (json[0] && json[0]["freeTextValue"]) // vital signs
         sectionNumber = 9
     else  // social history
         sectionNumber = 10
