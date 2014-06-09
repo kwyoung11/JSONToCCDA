@@ -18,85 +18,67 @@ var CCDA = require("blue-button-meta");
 var fs = require('fs');
 
 var data = [
-            {
-                "identifiers": [
-                    {
-                        "identifier": "7d5a02b0-67a4-11db-bd13-0800200c9a66"
-                    }
-                ],
-                "results": [
-                    {
-                        "identifiers": [
-                            {
-                                "identifier": "107c2dc0-67a5-11db-bd13-0800200c9a66"
-                            }
-                        ],
-                        "date": [
-                            {
-                                "date": "2000-03-23T14:30:00.000Z",
-                                "precision": "minute"
-                            }
-                        ],
-                        "freeTextValue": "HGB (M 13-18 g/dl; F 12-16 g/dl)",
-                        "interpretations": [
-                            "Normal"
-                        ],
-                        "name": "HGB",
-                        "code": "30313-1",
-                        "code_system_name": "LOINC",
-                        "value": 13.2,
-                        "unit": "g/dl"
-                    },
-                    {
-                        "identifiers": [
-                            {
-                                "identifier": "107c2dc0-67a5-11db-bd13-0800200c9a66"
-                            }
-                        ],
-                        "date": [
-                            {
-                                "date": "2000-03-23T14:30:00.000Z",
-                                "precision": "minute"
-                            }
-                        ],
-                        "freeTextValue": "WBC (4.3-10.8 10+3/ul)",
-                        "interpretations": [
-                            "Normal"
-                        ],
-                        "name": "WBC",
-                        "code": "33765-9",
-                        "code_system_name": "LOINC",
-                        "value": 6.7,
-                        "unit": "10+3/ul"
-                    },
-                    {
-                        "identifiers": [
-                            {
-                                "identifier": "107c2dc0-67a5-11db-bd13-0800200c9a66"
-                            }
-                        ],
-                        "date": [
-                            {
-                                "date": "2000-03-23T14:30:00.000Z",
-                                "precision": "minute"
-                            }
-                        ],
-                        "freeTextValue": "PLT (135-145 meq/l)",
-                        "interpretations": [
-                            "Low"
-                        ],
-                        "name": "PLT",
-                        "code": "26515-7",
-                        "code_system_name": "LOINC",
-                        "value": 123,
-                        "unit": "10+3/ul"
-                    }
-                ],
-                "name": "CBC WO DIFFERENTIAL",
-                "code": "43789009",
-                "code_system_name": "SNOMED CT"
-            }
-        ]
+        {
+            "date": [
+                {
+                    "date": "2008-01-03T00:00:00.000Z",
+                    "precision": "day"
+                },
+                {
+                    "date": "2008-01-03T00:00:00.000Z",
+                    "precision": "day"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "ab1791b0-5c71-11db-b0de-0800200c9a66"
+                }
+            ],
+            "negation_indicator": false,
+            "onset_age": "57",
+            "onset_age_unit": "Year",
+            "status": "Resolved",
+            "patient_status": "Alive and well",
+            "source_list_identifiers": [
+                {
+                    "identifier": "ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7"
+                }
+            ],
+            "name": "Pneumonia",
+            "code": "233604007",
+            "code_system_name": "SNOMED CT"
+        },
+        {
+            "date": [
+                {
+                    "date": "2007-01-03T00:00:00.000Z",
+                    "precision": "day"
+                },
+                {
+                    "date": "2008-01-03T00:00:00.000Z",
+                    "precision": "day"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "ab1791b0-5c71-11db-b0de-0800200c9a66"
+                }
+            ],
+            "negation_indicator": true,
+            "onset_age": "57",
+            "onset_age_unit": "Year",
+            "status": "Active",
+            "patient_status": "Alive and well",
+            "source_list_identifiers": [
+                {
+                    "identifier": "ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7"
+                }
+            ],
+            "name": "Asthma",
+            "code": "195967001",
+            "code_system_name": "SNOMED CT"
+        }
+    ]
 
 /* 
 This data structure delineates the value set codes for each possible section template in a CCD. 
@@ -147,6 +129,7 @@ XML document appropriate to that section.
 */
 function parseJSONToCCDA(data) {
 	var sectionNumber = determineSection(data);
+    console.log(sectionNumber);
     var xml = require('./templates/' + sectionNames[sectionNumber] +'.js')(sectionNumber, data, codeSystems);
     console.log(xml.toString());
 }
@@ -156,7 +139,7 @@ function determineSection(json) {
         sectionNumber = 1
     else if (json[0] && json[0]["sig"]) // medications
         sectionNumber = 2
-    else if (json[0] && json[0]["negation_indicator"]) // problems
+    else if (json[0] && json[0]["onset_age"]) // problems
         sectionNumber = 3
     else if (json[0] && json[0]["results"] != undefined) // results
         sectionNumber = 4
