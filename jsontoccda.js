@@ -17,96 +17,86 @@ var libxmljs = require("libxmljs");
 var CCDA = require("blue-button-meta");
 var fs = require('fs');
 
-var data = {
-        "name": {
-            "middle": [
-                "Isa"
-            ],
-            "last": "Jones",
-            "first": "Isabella"
-        },
-        "dob": [
+var data = [
             {
-                "date": "1975-05-01T00:00:00.000Z",
-                "precision": "day"
-            }
-        ],
-        "gender": "Female",
-        "identifiers": [
-            {
-                "identifier": "2.16.840.1.113883.19.5.99999.2",
-                "identifier_type": "998991"
-            },
-            {
-                "identifier": "2.16.840.1.113883.4.1",
-                "identifier_type": "111-00-2330"
-            }
-        ],
-        "marital_status": "Married",
-        "addresses": [
-            {
-                "streetLines": [
-                    "1357 Amber Drive"
-                ],
-                "city": "Beaverton",
-                "state": "OR",
-                "zip": "97867",
-                "country": "US",
-                "use": "primary home"
-            }
-        ],
-        "phone": [
-            {
-                "number": "(816)276-6909",
-                "type": "primary home"
-            }
-        ],
-        "race_ethnicity": "White",
-        "languages": [
-            {
-                "language": "en",
-                "preferred": true,
-                "mode": "Expressed spoken",
-                "proficiency": "Good"
-            }
-        ],
-        "religion": "Christian (non-Catholic, non-specific)",
-        "birthplace": {
-            "city": "Beaverton",
-            "state": "OR",
-            "zip": "97867",
-            "country": "US"
-        },
-        "guardians": [
-            {
-                "relation": "Parent",
-                "addresses": [
+                "identifiers": [
                     {
-                        "streetLines": [
-                            "1357 Amber Drive"
+                        "identifier": "7d5a02b0-67a4-11db-bd13-0800200c9a66"
+                    }
+                ],
+                "results": [
+                    {
+                        "identifiers": [
+                            {
+                                "identifier": "107c2dc0-67a5-11db-bd13-0800200c9a66"
+                            }
                         ],
-                        "city": "Beaverton",
-                        "state": "OR",
-                        "zip": "97867",
-                        "country": "US",
-                        "use": "primary home"
+                        "date": [
+                            {
+                                "date": "2000-03-23T14:30:00.000Z",
+                                "precision": "minute"
+                            }
+                        ],
+                        "freeTextValue": "HGB (M 13-18 g/dl; F 12-16 g/dl)",
+                        "interpretations": [
+                            "Normal"
+                        ],
+                        "name": "HGB",
+                        "code": "30313-1",
+                        "code_system_name": "LOINC",
+                        "value": 13.2,
+                        "unit": "g/dl"
+                    },
+                    {
+                        "identifiers": [
+                            {
+                                "identifier": "107c2dc0-67a5-11db-bd13-0800200c9a66"
+                            }
+                        ],
+                        "date": [
+                            {
+                                "date": "2000-03-23T14:30:00.000Z",
+                                "precision": "minute"
+                            }
+                        ],
+                        "freeTextValue": "WBC (4.3-10.8 10+3/ul)",
+                        "interpretations": [
+                            "Normal"
+                        ],
+                        "name": "WBC",
+                        "code": "33765-9",
+                        "code_system_name": "LOINC",
+                        "value": 6.7,
+                        "unit": "10+3/ul"
+                    },
+                    {
+                        "identifiers": [
+                            {
+                                "identifier": "107c2dc0-67a5-11db-bd13-0800200c9a66"
+                            }
+                        ],
+                        "date": [
+                            {
+                                "date": "2000-03-23T14:30:00.000Z",
+                                "precision": "minute"
+                            }
+                        ],
+                        "freeTextValue": "PLT (135-145 meq/l)",
+                        "interpretations": [
+                            "Low"
+                        ],
+                        "name": "PLT",
+                        "code": "26515-7",
+                        "code_system_name": "LOINC",
+                        "value": 123,
+                        "unit": "10+3/ul"
                     }
                 ],
-                "names": [
-                    {
-                        "last": "Jones",
-                        "first": "Ralph"
-                    }
-                ],
-                "phone": [
-                    {
-                        "number": "(816)276-6909",
-                        "type": "primary home"
-                    }
-                ]
+                "name": "CBC WO DIFFERENTIAL",
+                "code": "43789009",
+                "code_system_name": "SNOMED CT"
             }
         ]
-    }
 
 /* 
 This data structure delineates the value set codes for each possible section template in a CCD. 
