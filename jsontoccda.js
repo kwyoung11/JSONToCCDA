@@ -15,193 +15,312 @@ appropriate XML attributes for the section template determined previously.
 
 var libxmljs = require("libxmljs");
 var CCDA = require("blue-button-meta");
-var fs = require('fs');
 
 var data = [
         {
-            "identifiers": [
-                {
-                    "identifier": "d68b7e32-7810-4f5b-9cc2-acd54b0fd85d"
-                }
-            ],
-            "status": "Completed",
             "date": [
                 {
-                    "date": "2012-05-12T00:00:00.000Z",
-                    "precision": "day"
+                    "date": "1999-11-01T00:00:00.000Z",
+                    "precision": "month"
                 }
             ],
-            "bodysite": [
+            "identifiers": [
                 {
-                    "name": "colon",
-                    "code": "appropriate_code",
-                    "code_system_name": "OID 2.16.840.1.113883.3.88.12.3221.8.9"
+                    "identifier": "e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92"
                 }
             ],
-            "providers": [
-                {
-                    "address": {
-                        "streetLines": [
-                            "1001 Village Avenue"
-                        ],
-                        "city": "Portland",
-                        "state": "OR",
-                        "zip": "99123",
-                        "country": "US"
-                    },
-                    "telecom": {
-                        "value": "555-555-5000",
-                        "use": "work place"
-                    },
-                    "organization": {
-                        "name": "Community Health and Hospitals",
-                        "address": {
-                            "streetLines": [
-                                "1001 Village Avenue"
-                            ],
-                            "city": "Portland",
-                            "state": "OR",
-                            "zip": "99123",
-                            "country": "US"
-                        },
-                        "telecom": {
-                            "value": "555-555-5000",
-                            "use": "work place"
-                        }
+            "status": "complete",
+            "product": {
+                "name": "Influenza virus vaccine",
+                "code": "88",
+                "code_system_name": "CVX",
+                "translations": [
+                    {
+                        "name": "Influenza, seasonal, injectable",
+                        "code": "141",
+                        "code_system_name": "CVX"
                     }
+                ],
+                "lot_number": "1",
+                "manufacturer": "Health LS - Immuno Inc."
+            },
+            "administration": {
+                "route": {
+                    "name": "Intramuscular injection",
+                    "code": "C28161",
+                    "code_system_name": "Medication Route FDA"
+                },
+                "quantity": {
+                    "value": 50,
+                    "unit": "mcg"
                 }
-            ],
-            "proc_type": "procedure",
-            "name": "Colonoscopy",
-            "code": "73761001",
-            "code_system_name": "SNOMED CT"
+            },
+            "performer": {
+                "identifiers": [
+                    {
+                        "identifier": "2.16.840.1.113883.19.5.9999.456",
+                        "identifier_type": "2981824"
+                    }
+                ],
+                "name": [
+                    {
+                        "last": "Assigned",
+                        "first": "Amanda"
+                    }
+                ],
+                "address": [
+                    {
+                        "streetLines": [
+                            "1021 Health Drive"
+                        ],
+                        "city": "Ann Arbor",
+                        "state": "MI",
+                        "zip": "99099",
+                        "country": "US"
+                    }
+                ],
+                "organization": [
+                    {
+                        "identifiers": [
+                            {
+                                "identifier": "2.16.840.1.113883.19.5.9999.1394"
+                            }
+                        ],
+                        "name": [
+                            "Good Health Clinic"
+                        ]
+                    }
+                ]
+            }
         },
         {
-            "identifiers": [
-                {
-                    "identifier": "2.16.840.1.113883.19",
-                    "identifier_type": "123456789"
-                }
-            ],
-            "status": "Aborted",
             "date": [
                 {
-                    "date": "2011-02-03T00:00:00.000Z",
+                    "date": "1998-12-15T00:00:00.000Z",
                     "precision": "day"
                 }
             ],
-            "bodysite": [
+            "identifiers": [
                 {
-                    "name": "Abdomen and pelvis",
-                    "code": "416949008",
-                    "code_system_name": "SNOMED CT"
+                    "identifier": "e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92"
                 }
             ],
-            "providers": [
-                {
-                    "address": {
-                        "streetLines": [
-                            "17 Daws Rd."
-                        ],
-                        "city": "Blue Bell",
-                        "state": "MA",
-                        "zip": "02368",
-                        "country": "US"
-                    },
-                    "telecom": {
-                        "value": "(555)555-555-1234",
-                        "use": "work place"
-                    },
-                    "organization": {
-                        "name": "Community Health and Hospitals"
+            "status": "refused",
+            "product": {
+                "name": "Influenza virus vaccine",
+                "code": "88",
+                "code_system_name": "CVX",
+                "translations": [
+                    {
+                        "name": "Influenza, seasonal, injectable",
+                        "code": "141",
+                        "code_system_name": "CVX"
                     }
+                ],
+                "lot_number": "1",
+                "manufacturer": "Health LS - Immuno Inc."
+            },
+            "administration": {
+                "route": {
+                    "name": "Intramuscular injection",
+                    "code": "C28161",
+                    "code_system_name": "Medication Route FDA"
+                },
+                "quantity": {
+                    "value": 50,
+                    "unit": "mcg"
                 }
-            ],
-            "locations": [
-                {
-                    "name": "Community Gastroenterology Clinic",
-                    "loc_type": {
-                        "name": "Gastroenterology Clinic",
-                        "code": "1118-9",
-                        "code_system_name": "HealthcareServiceLocation"
-                    },
-                    "addresses": [
-                        {
-                            "streetLines": [
-                                "17 Daws Rd."
-                            ],
-                            "city": "Blue Bell",
-                            "state": "MA",
-                            "zip": "02368",
-                            "country": "US"
-                        }
-                    ]
-                }
-            ],
-            "proc_type": "observation",
-            "name": "Colonic polypectomy",
-            "code": "274025005",
-            "code_system_name": "SNOMED CT"
+            },
+            "performer": {
+                "identifiers": [
+                    {
+                        "identifier": "2.16.840.1.113883.19.5.9999.456",
+                        "identifier_type": "2981824"
+                    }
+                ],
+                "name": [
+                    {
+                        "last": "Assigned",
+                        "first": "Amanda"
+                    }
+                ],
+                "address": [
+                    {
+                        "streetLines": [
+                            "1021 Health Drive"
+                        ],
+                        "city": "Ann Arbor",
+                        "state": "MI",
+                        "zip": "99099",
+                        "country": "US"
+                    }
+                ],
+                "organization": [
+                    {
+                        "identifiers": [
+                            {
+                                "identifier": "2.16.840.1.113883.19.5.9999.1394"
+                            }
+                        ],
+                        "name": [
+                            "Good Health Clinic"
+                        ]
+                    }
+                ]
+            }
         },
         {
-            "identifiers": [
-                {
-                    "identifier": "1.2.3.4.5.6.7.8",
-                    "identifier_type": "1234567"
-                }
-            ],
-            "status": "Completed",
             "date": [
                 {
-                    "date": "2011-02-03T00:00:00.000Z",
+                    "date": "1998-12-15T00:00:00.000Z",
                     "precision": "day"
                 }
             ],
-            "providers": [
+            "identifiers": [
                 {
-                    "address": {
-                        "streetLines": [
-                            "17 Daws Rd."
-                        ],
-                        "city": "Blue Bell",
-                        "state": "MA",
-                        "zip": "02368",
-                        "country": "US"
-                    },
-                    "telecom": {
-                        "value": "(555)555-555-1234",
-                        "use": "work place"
-                    },
-                    "organization": {
-                        "name": "Community Health and Hospitals"
+                    "identifier": "e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92"
+                }
+            ],
+            "status": "complete",
+            "product": {
+                "name": "Pneumococcal polysaccharide vaccine",
+                "code": "33",
+                "code_system_name": "CVX",
+                "translations": [
+                    {
+                        "name": "Pneumococcal NOS",
+                        "code": "109",
+                        "code_system_name": "CVX"
                     }
+                ],
+                "lot_number": "1",
+                "manufacturer": "Health LS - Immuno Inc."
+            },
+            "administration": {
+                "route": {
+                    "name": "Intramuscular injection",
+                    "code": "C28161",
+                    "code_system_name": "Medication Route FDA"
+                },
+                "quantity": {
+                    "value": 50,
+                    "unit": "mcg"
                 }
-            ],
-            "locations": [
+            },
+            "performer": {
+                "identifiers": [
+                    {
+                        "identifier": "2.16.840.1.113883.19.5.9999.456",
+                        "identifier_type": "2981824"
+                    }
+                ],
+                "name": [
+                    {
+                        "last": "Assigned",
+                        "first": "Amanda"
+                    }
+                ],
+                "address": [
+                    {
+                        "streetLines": [
+                            "1021 Health Drive"
+                        ],
+                        "city": "Ann Arbor",
+                        "state": "MI",
+                        "zip": "99099",
+                        "country": "US"
+                    }
+                ],
+                "organization": [
+                    {
+                        "identifiers": [
+                            {
+                                "identifier": "2.16.840.1.113883.19.5.9999.1394"
+                            }
+                        ],
+                        "name": [
+                            "Good Health Clinic"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "date": [
                 {
-                    "name": "Community Gastroenterology Clinic",
-                    "loc_type": {
-                        "name": "Gastroenterology Clinic",
-                        "code": "1118-9",
-                        "code_system_name": "HealthcareServiceLocation"
-                    },
-                    "addresses": [
-                        {
-                            "streetLines": [
-                                "17 Daws Rd."
-                            ],
-                            "city": "Blue Bell",
-                            "state": "MA",
-                            "zip": "02368",
-                            "country": "US"
-                        }
-                    ]
+                    "date": "1998-12-15T00:00:00.000Z",
+                    "precision": "day"
                 }
             ],
-            "proc_type": "act",
-            "name": "Colonic polypectomy",
-            "code": "274025005",
-            "code_system_name": "SNOMED CT"
+            "identifiers": [
+                {
+                    "identifier": "e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92"
+                }
+            ],
+            "status": "refused",
+            "product": {
+                "name": "Tetanus and diphtheria toxoids - preservative free",
+                "code": "103",
+                "code_system_name": "CVX",
+                "translations": [
+                    {
+                        "name": "Tetanus and diphtheria toxoids - preservative free",
+                        "code": "09",
+                        "code_system_name": "CVX"
+                    }
+                ],
+                "lot_number": "1",
+                "manufacturer": "Health LS - Immuno Inc."
+            },
+            "administration": {
+                "route": {
+                    "name": "Intramuscular injection",
+                    "code": "C28161",
+                    "code_system_name": "Medication Route FDA"
+                },
+                "quantity": {
+                    "value": 50,
+                    "unit": "mcg"
+                }
+            },
+            "performer": {
+                "identifiers": [
+                    {
+                        "identifier": "2.16.840.1.113883.19.5.9999.456",
+                        "identifier_type": "2981824"
+                    }
+                ],
+                "name": [
+                    {
+                        "last": "Assigned",
+                        "first": "Amanda"
+                    }
+                ],
+                "address": [
+                    {
+                        "streetLines": [
+                            "1021 Health Drive"
+                        ],
+                        "city": "Ann Arbor",
+                        "state": "MI",
+                        "zip": "99099",
+                        "country": "US"
+                    }
+                ],
+                "organization": [
+                    {
+                        "identifiers": [
+                            {
+                                "identifier": "2.16.840.1.113883.19.5.9999.1394"
+                            }
+                        ],
+                        "name": [
+                            "Good Health Clinic"
+                        ]
+                    }
+                ]
+            },
+            "refusal_reason": "Patient objection"
         }
     ]
 
