@@ -31,6 +31,7 @@ var data = [
 ]
 
 
+
 /* 
 This data structure delineates the value set codes for each possible section template in a CCD. 
 See sectionNumberToSectionName data structure for order. 
